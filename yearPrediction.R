@@ -9,6 +9,15 @@ createSVM = function(dataCSV)
 {
   x <- subset(dataCSV,select=-V1)
   y <- subset(dataCSV,select=V1)
-  model <- svm(x,y,cost=10,gamma=0.5)
+  model <- svm(x,y)
+  return(model)
+}
+
+initSVM = function(name)
+{
+  library("e1071")
+  dataCSV <- importCSV(name)
+  summary(dataCSV)
+  model <- createSVM(dataCSV)
   return(model)
 }
