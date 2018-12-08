@@ -21,3 +21,24 @@ initSVM = function(name)
   model <- createSVM(dataCSV)
   return(model)
 }
+
+test_data = function(model,x) {
+  a <- subset(x,select=-V1)
+  b <- subset(x,select=V1)
+  p <- predict(model,a)
+  cpt <- 0
+  res <- 0
+  for (i in 1:(dim(b)[1]))
+    {
+      cpt <- cpt + 1
+      print(round(p[i],digits=0))
+      print(b[i])
+      if (b[i] == round(p[i],digits=0))
+      {
+
+        res <- res + 1
+      }
+    }
+  print(res)
+  print(cpt)
+}
