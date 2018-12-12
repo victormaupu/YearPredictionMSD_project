@@ -28,17 +28,18 @@ test_data = function(model,x) {
   p <- predict(model,a)
   cpt <- 0
   res <- 0
+  moyDiff <- 0
   for (i in 1:(dim(b)[1]))
     {
       cpt <- cpt + 1
       print(round(p[i],digits=0))
       print(b[i])
-      if (b[i] == round(p[i],digits=0))
+      moyDiff <- moyDiff + abs(b[i]-round(p[i],digits=0))
+      if (abs(b[i]-round(p[i],digits=0))<2)
       {
-
         res <- res + 1
       }
     }
-  print(res)
-  print(cpt)
+  cat("res = ",(res/cpt)*100,"\n")
+  cat("moyenne d'erreur = ",moyDiff/cpt,"\n")
 }
